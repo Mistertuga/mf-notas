@@ -1,0 +1,316 @@
+<title>Mensagens Mister Futboll</title>
+<style>
+:root{
+  --bg:#ECECEE;
+  --surface:#FFFFFF;
+  --fill:rgba(120,120,128,.09);
+  --label:#1D1D1F;
+  --label-2:#6E6E73;
+  --label-3:#98989D;
+  --sep:rgba(60,60,67,.14);
+  --sep-2:rgba(60,60,67,.24);
+  --accent:#0071E3;
+  --green:#1D9A57;
+  --glass:rgba(246,246,248,.82);
+  --lift:0 0 0 .5px rgba(0,0,0,.05), 0 1px 2px rgba(0,0,0,.04);
+  --t1:#0062CC; --t1s:rgba(0,98,204,.30);
+  --t2:#1D8A4E; --t2s:rgba(29,138,78,.32);
+  --t3:#B96A00; --t3s:rgba(185,106,0,.32);
+  --t4:#8145B5; --t4s:rgba(129,69,181,.30);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#151517;
+    --surface:#202022;
+    --fill:rgba(120,120,128,.19);
+    --label:#F5F5F7;
+    --label-2:#9C9CA2;
+    --label-3:#6E6E73;
+    --sep:rgba(255,255,255,.10);
+    --sep-2:rgba(255,255,255,.17);
+    --accent:#0A84FF;
+    --green:#30D158;
+    --glass:rgba(26,26,28,.82);
+    --lift:0 0 0 .5px rgba(255,255,255,.06), 0 1px 2px rgba(0,0,0,.3);
+    --t1:#4CA3FF; --t1s:rgba(76,163,255,.38);
+    --t2:#3DD07A; --t2s:rgba(61,208,122,.38);
+    --t3:#E9A13B; --t3s:rgba(233,161,59,.38);
+    --t4:#BB86E8; --t4s:rgba(187,134,232,.38);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151517;
+  --surface:#202022;
+  --fill:rgba(120,120,128,.19);
+  --label:#F5F5F7;
+  --label-2:#9C9CA2;
+  --label-3:#6E6E73;
+  --sep:rgba(255,255,255,.10);
+  --sep-2:rgba(255,255,255,.17);
+  --accent:#0A84FF;
+  --green:#30D158;
+  --glass:rgba(26,26,28,.82);
+  --lift:0 0 0 .5px rgba(255,255,255,.06), 0 1px 2px rgba(0,0,0,.3);
+  --t1:#4CA3FF; --t1s:rgba(76,163,255,.38);
+  --t2:#3DD07A; --t2s:rgba(61,208,122,.38);
+  --t3:#E9A13B; --t3s:rgba(233,161,59,.38);
+  --t4:#BB86E8; --t4s:rgba(187,134,232,.38);
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;background:var(--bg);color:var(--label);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:16px;line-height:1.47;letter-spacing:-.008em;
+  -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;
+}
+button{font:inherit;color:inherit;letter-spacing:inherit;}
+
+.bar{
+  position:sticky;top:0;z-index:10;
+  background:var(--glass);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--sep);
+}
+.bar .in{
+  max-width:760px;margin:0 auto;padding:11px 18px;
+}
+.app{font-size:16px;font-weight:600;letter-spacing:-.018em;margin:0;}
+.meta{font-size:12.5px;color:var(--label-3);margin:1px 0 0;}
+
+main{max-width:760px;margin:0 auto;padding:18px;padding-block:18px 60px;}
+
+.card{
+  background:var(--surface);border-radius:14px;box-shadow:var(--lift);
+  overflow:hidden;margin-bottom:16px;
+}
+.c1{--tone:var(--t1);--tone-soft:var(--t1s);}
+.c2{--tone:var(--t2);--tone-soft:var(--t2s);}
+.c3{--tone:var(--t3);--tone-soft:var(--t3s);}
+.c4{--tone:var(--t4);--tone-soft:var(--t4s);}
+
+.card > header{padding:16px 18px 14px;}
+.card h2{
+  font-size:18px;font-weight:600;letter-spacing:-.02em;margin:0;line-height:1.22;
+  color:var(--tone);
+}
+.cap{margin:3px 0 0;font-size:13px;color:var(--label-3);}
+
+.lbl{
+  border-top:1px solid var(--sep);
+  padding:10px 18px 0;
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--label-3);
+}
+.tx{
+  margin:0;padding:10px 18px 0;
+  font-size:16px;line-height:1.6;white-space:pre-wrap;letter-spacing:-.006em;
+}
+.tx.one{font-size:18px;font-weight:500;white-space:normal;}
+.tx.first{border-top:1px solid var(--sep);padding-top:16px;}
+
+.cp{
+  display:block;width:calc(100% - 36px);margin:14px 18px 18px;
+  min-height:46px;padding:12px;
+  border:1px solid var(--tone-soft);border-radius:11px;
+  background:var(--fill);color:var(--tone);
+  font-size:16px;font-weight:600;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:background .14s ease,color .14s ease,border-color .14s ease;
+}
+.cp:active{background:var(--sep);}
+.cp.done{background:var(--green);border-color:var(--green);color:#fff;}
+.cp:focus-visible{outline:2px solid var(--tone);outline-offset:2px;}
+
+.card > footer{
+  border-top:1px solid var(--sep);background:var(--fill);
+  padding:14px 18px 17px;display:flex;flex-direction:column;gap:11px;
+}
+.ftitle{
+  font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--label-3);
+}
+.card > footer p{
+  margin:0;font-size:14px;line-height:1.5;color:var(--label-2);
+  padding-left:12px;border-left:2px solid var(--tone-soft);
+}
+.card > footer b{color:var(--label);font-weight:600;}
+
+code{
+  font-family:ui-monospace,"SF Mono",SFMono-Regular,Menlo,monospace;
+  font-size:.88em;font-weight:500;
+  background:var(--sep);color:var(--label);
+  padding:.08em .3em;border-radius:4px;
+}
+
+.recap{
+  background:var(--surface);border-radius:14px;box-shadow:var(--lift);
+  padding:16px 18px;margin-top:4px;
+}
+.recap h3{
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--label-3);margin:0 0 10px;
+}
+.recap p{margin:0 0 9px;font-size:14.5px;line-height:1.5;color:var(--label-2);}
+.recap p:last-child{margin-bottom:0;}
+.recap b{color:var(--label);font-weight:600;}
+
+.toast{
+  position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(10px);
+  background:var(--green);color:#fff;
+  padding:10px 20px;border-radius:10px;font-size:14.5px;font-weight:600;
+  box-shadow:0 6px 22px rgba(0,0,0,.22);
+  opacity:0;pointer-events:none;z-index:40;
+  transition:opacity .18s ease,transform .18s ease;
+}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+
+@media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+</style>
+
+<div class="bar">
+  <div class="in">
+    <p class="app">Mister Futboll</p>
+    <p class="meta">40–50 por dia · 50 € por história · etiqueta lead</p>
+  </div>
+</div>
+
+<main>
+
+  <article class="card c1">
+    <header>
+      <h2>Primeira mensagem</h2>
+      <p class="cap">A quem nunca falaste</p>
+    </header>
+    <p class="tx first" id="m1">Buenas! Estamos pagando 50€ por historia en una primera campaña de prueba y creo que tu perfil puede encajar bien.
+
+Uno de nuestros formatos permite a tu comunidad recibir una camiseta de fútbol al participar y cumplir con las condiciones de la campaña. Es algo fácil de comunicar, con un beneficio real para tus seguidores, mientras te pagan por el contenido.
+
+Si estás interesado, te enviaré la demo y te explicaré rápidamente todos los detalles para ver si tiene sentido para ti.</p>
+    <button class="cp" data-c="m1" type="button">Copiar</button>
+    <footer>
+      <span class="ftitle">Notas</span>
+      <p><b>40 a 50 perfis novos por dia.</b> Manda tal e qual, sem acrescentar nada.</p>
+      <p>Põe a etiqueta <code>lead</code> na conversa. Responde só às que a tenham.</p>
+    </footer>
+  </article>
+
+  <article class="card c2">
+    <header>
+      <h2>Segunda mensagem</h2>
+      <p class="cap">Assim que responderem — pede o WhatsApp</p>
+    </header>
+    <p class="tx first" id="m2">¡Perfecto! Ya tenemos varios creadores como tú trabajando con nosotros y el proceso es bastante sencillo.
+
+En esta primera fase pagamos 50€ por historia. Enviamos ejemplos, ya preparados, explicamos todo antes y tú decides si el formato tiene sentido para tu perfil. No hay exclusividad ni ningún compromiso antes de que veas la campaña completa.
+
+Envíame tu WhatsApp con el indicativo y te lo mando todo por ahí! ☺️</p>
+    <button class="cp" data-c="m2" type="button">Copiar</button>
+    <footer>
+      <span class="ftitle">Notas</span>
+      <p><b>Esta vai sempre.</b> Digam eles o que disserem, fazes-te de sonso e mandas esta na mesma.</p>
+      <p><b>Quando derem o número:</b> tira <b>todas</b> as etiquetas, põe <code>enviada</code>, restringe a conversa, e manda o número com o @ ao Jekas.</p>
+      <p>Se não quiserem dar o WhatsApp, não insistas. Diz ao Jekas e ele fecha por Instagram.</p>
+    </footer>
+  </article>
+
+  <article class="card c3">
+    <header>
+      <h2>Terceira mensagem</h2>
+      <p class="cap">Se não responder em 24 h</p>
+    </header>
+    <p class="tx one first" id="m3">¿Asociación? ¡Nos gustaba mucho! ☺️</p>
+    <button class="cp" data-c="m3" type="button">Copiar</button>
+    <footer>
+      <span class="ftitle">Notas</span>
+      <p><b>Repete até 3 vezes, uma por dia.</b> Ou uma de manhã e outra à noite.</p>
+      <p>Muita gente só vê à terceira, porque a mensagem fica enterrada nos pedidos. Reforçar as antigas vale tanto como mandar novas.</p>
+    </footer>
+  </article>
+
+  <article class="card c4">
+    <header>
+      <h2>Email</h2>
+      <p class="cap">Depois dos três reforços sem resposta</p>
+    </header>
+    <div class="lbl">Assunto</div>
+    <p class="tx one" id="m4a">¿Asociación? ¡Trabajo pagado! Urgente!</p>
+    <button class="cp" data-c="m4a" type="button">Copiar assunto</button>
+    <div class="lbl">Corpo</div>
+    <p class="tx" id="m4b">¡Hola! ¡Queremos hacer un trabajo contigo! ☺️
+
+Enviamos un mensaje a tu instagram pero no respondiste. ¡Por favor, responda! El mensaje debe estar en las solicitudes de mensajes de Instagram o en las solicitudes ocultas.
+
+Nuestro instagram es @mister.futboll</p>
+    <button class="cp" data-c="m4b" type="button">Copiar corpo</button>
+    <footer>
+      <span class="ftitle">Notas</span>
+      <p><b>Antes de mandares:</b> tira <b>todas</b> as etiquetas, põe <code>marcado</code>, restringe a conversa.</p>
+      <p>Ainda te falta a conta de email. O Jekas disse que a dava — lembra-o.</p>
+    </footer>
+  </article>
+
+  <div class="recap">
+    <h3>As etiquetas, num segundo</h3>
+    <p><b>Enquanto trabalhas a conversa:</b> <code>lead</code></p>
+    <p><b>Deram o número:</b> tira todas → <code>enviada</code> → restringe</p>
+    <p><b>Três reforços sem resposta:</b> tira todas → <code>marcado</code> → restringe</p>
+    <p>Do André é <code>sinalizar</code>, do Jekas é <code>pago</code>. Nessas não mexes.</p>
+  </div>
+
+</main>
+
+<div class="toast" id="toast">Copiado</div>
+
+<script>
+(function(){
+"use strict";
+var tT = null;
+function aviso(){
+  var t = document.getElementById("toast");
+  t.classList.add("on");
+  clearTimeout(tT);
+  tT = setTimeout(function(){ t.classList.remove("on"); }, 1700);
+}
+function copiar(texto, botao, rotulo){
+  function feito(){
+    botao.textContent = "Copiado";
+    botao.classList.add("done");
+    setTimeout(function(){
+      botao.textContent = rotulo;
+      botao.classList.remove("done");
+    }, 1600);
+    aviso();
+  }
+  function alt(){
+    var ta = document.createElement("textarea");
+    ta.value = texto;
+    ta.setAttribute("readonly","");
+    ta.style.position = "fixed";
+    ta.style.top = "0";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.setSelectionRange(0, texto.length);
+    ta.select();
+    var ok = false;
+    try{ ok = document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(ta);
+    if(ok){ feito(); }
+    else { botao.textContent = "Seleciona e copia à mão"; setTimeout(function(){ botao.textContent = rotulo; }, 2400); }
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(texto).then(feito, alt);
+  } else { alt(); }
+}
+document.querySelectorAll("[data-c]").forEach(function(b){
+  var rotulo = b.textContent;
+  b.addEventListener("click", function(){
+    var alvo = document.getElementById(b.getAttribute("data-c"));
+    if(alvo) copiar(alvo.textContent, b, rotulo);
+  });
+});
+})();
+</script>
